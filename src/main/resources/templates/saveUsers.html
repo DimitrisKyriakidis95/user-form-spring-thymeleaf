@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   
+
+	<title>Save User</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<h3>Display Users</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Register new user</p>
+	
+		<form action="#" th:action="@{/users/save}"
+						 th:object="${user}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+			
+			    	<label>First Name:</label>
+     	<tr  th:field="*{firstName}"/>
+			<input type="text" th:field="*{firstName}"
+					class="form-control mb-4 col-4" placeholder="First name">
+					
+                 
+                   <label>Last Name:</label>
+	 	<tr  th:field="*{lastName}"/>
+			<input type="text" th:field="*{lastName}"
+					class="form-control mb-4 col-4" placeholder="Last name">
+
+			     
+			       <label>Birthdate:</label>
+	 	<tr  th:field="*{date}"/>
+			<form action="https://example.com">
+            <input type="date" name="date">
+ 
+
+			       <label>Home Adress:</label>
+	 <tr  th:field="*{homeAdress}"/>
+			<input type="text" th:field="*{homeAdress}"
+					class="form-control mb-4 col-4" placeholder="Home Adress">
+			
+		          
+		           <label>Work Adress:</label>
+	 <tr  th:field="*{workAdress}"/>
+			<input type="text" th:field="*{workAdress}"
+					class="form-control mb-4 col-4" placeholder="Work Adress">
+			
+			
+			    	<label>Gender:</label>
+        <select th:field="*{gender}">
+            <option th:each="p : ${genderlist}" th:value="${p}" th:text="${p}" />
+        </select>
+			
+			
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+	
+		
+	</div>
+</body>
+
+</html>

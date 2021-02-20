@@ -1,4 +1,4 @@
-package com.example.demo.model;
+ package com.example.demo.model;
 
 import java.sql.Date;
 
@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name="user")
@@ -19,6 +23,8 @@ public class User {
 	@Column(name="user_id")
 	private Integer id;
 	
+	
+	@NotEmpty(message = "{NotEmpty.userForm.firstName}")
 	@Column(name="user_name")
 	private String firstName;
 	
@@ -37,12 +43,18 @@ public class User {
 	private String workAdress;
 
 
+	@Column(name="user_gender")
+	private String gender;
+	
+	
 	public User() {
 		
 	}
 	
 	
-	public User(Integer id, String firstName, String lastName, Date date, String homeAdress, String workAdress) {
+	
+	
+	public User(Integer id, String firstName, String lastName, Date date, String homeAdress, String workAdress,String gender) {
 		
 		this.id = id;
 		this.firstName = firstName;
@@ -50,6 +62,7 @@ public class User {
 		this.date = date;
 		this.homeAdress = homeAdress;
 		this.workAdress = workAdress;
+		this.gender = gender;
 	}
 
 
@@ -113,11 +126,30 @@ public class User {
 	}
 
 
+	public String getGender() {
+		return gender;
+	}
+
+
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", date=" + date
-				+ ", homeAdress=" + homeAdress + ", workAdress=" + workAdress + "]";
+				+ ", homeAdress=" + homeAdress + ", workAdress=" + workAdress + ", gender=" + gender + "]";
 	}
+
+
+
+
+	
 
 
 
