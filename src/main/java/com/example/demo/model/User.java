@@ -1,6 +1,6 @@
  package com.example.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,10 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.lang.NonNull;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="user")
@@ -24,25 +28,35 @@ public class User {
 	private Integer id;
 	
 	
-	@NotEmpty(message = "{NotEmpty.userForm.firstName}")
+	@NotEmpty(message = "{firstName is required}")
 	@Column(name="user_name")
 	private String firstName;
 	
+	
+	@NotEmpty(message = "{lasttName is required}")
 	@Column(name="user_surname")
 	private String lastName;
 
+	
+	@NotNull(message = "{birthDate is required}")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="user_date")
 	private  Date date;
 
    
+	@NotEmpty(message = "{homeAdress is required}")
 	@Column(name="user_homeAdress")
 	private String homeAdress;
    
    
+	@NotEmpty(message = "{workAdress is required}")
 	@Column(name="user_workAdress")
 	private String workAdress;
 
 
+	
+	@NotEmpty(message = "{gender is required}")
 	@Column(name="user_gender")
 	private String gender;
 	

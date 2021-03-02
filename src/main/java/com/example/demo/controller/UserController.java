@@ -71,8 +71,17 @@ public class UserController {
 	
 	
 	@PostMapping("/save")
-	public String saveUser(@ModelAttribute("user") User theUser) {
+	public String saveUser(@Valid @ModelAttribute("user") User theUser,BindingResult bindingResult,Model model) {
      
+		   if(bindingResult.hasErrors()) {
+			
+			List<String> genderlist = Arrays.asList("Male", "Female");
+		    model.addAttribute("genderlist", genderlist);
+			
+			return "saveUsers";
+		}
+		
+		
 		userService.save(theUser);
 
 		return "redirect:list";

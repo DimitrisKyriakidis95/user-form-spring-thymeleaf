@@ -4,61 +4,87 @@
 <head>
    
 
-	<title>Save User</title>
+<title>Save User</title>
+       <style>
+		.error{
+		        color:red
+		}
+	</style>
 </head>
 
 <body>
 
-	<div class="container">
+	<div >
 	
 		<h3>Display Users</h3>
 		<hr>
 		
-		<p class="h4 mb-4">Register new user</p>
-	
+		<p >Register new user</p>
+	     
+	     
+		
 		<form action="#" th:action="@{/users/save}"
 						 th:object="${user}" method="POST">
 		
-			<!-- Add hidden form field to handle update -->
+			
 			<input type="hidden" th:field="*{id}" />
 			
 			    	<label>First Name:</label>
-     	<tr  th:field="*{firstName}"/>
 			<input type="text" th:field="*{firstName}"
-					class="form-control mb-4 col-4" placeholder="First name">
-					
+					 placeholder="First name">
+				  <div>
+					 <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="error" >Name Error</span>
+				  </div>
+                 <br>
                  
+                  
                    <label>Last Name:</label>
-	 	<tr  th:field="*{lastName}"/>
 			<input type="text" th:field="*{lastName}"
-					class="form-control mb-4 col-4" placeholder="Last name">
-
+					 placeholder="Last name">
+              	<div>
+					 <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorclass="error">Last Name Error</span>
+				</div>
+			        <br>
+			     
 			     
 			       <label>Birthdate:</label>
-	 	<tr  th:field="*{date}"/>
-			<form action="https://example.com">
-            <input type="date" name="date">
- 
+            <input type="date"  th:field="*{date}">
+          	     <div>
+					<span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" th:errorclass="error">Birthdate  Error</span>
+				</div>
+                     <br>
 
+			      
 			       <label>Home Adress:</label>
-	 <tr  th:field="*{homeAdress}"/>
 			<input type="text" th:field="*{homeAdress}"
-					class="form-control mb-4 col-4" placeholder="Home Adress">
+					 placeholder="Home Adress">
+			    <div>
+				  <span th:if="${#fields.hasErrors('homeAdress')}" th:errors="*{homeAdress}" th:errorclass="error">Home Adress  Error</span>
+				 </div>
+			          <br>
+			
 			
 		          
-		           <label>Work Adress:</label>
-	 <tr  th:field="*{workAdress}"/>
+		           <label>Work Adress:</label> 
 			<input type="text" th:field="*{workAdress}"
-					class="form-control mb-4 col-4" placeholder="Work Adress">
+					 placeholder="Work Adress">
+			      <div>	
+				<span th:if="${#fields.hasErrors('workAdress')}" th:errors="*{workAdress}" th:errorclass="error">Work Adress  Error</span>
+				  </div>
+			          <br>
+			
 			
 			
 			    	<label>Gender:</label>
-        <select th:field="*{gender}">
+            <select th:field="*{gender}">
             <option th:each="p : ${genderlist}" th:value="${p}" th:text="${p}" />
-        </select>
+                  <div th:if="${genderlist != null and not #lists.isEmpty(genderlist)}">
+					  <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" th:errorclass="error">Gender  Error</span>
+				   </div>
+            </select>
+			       <br>
 			
-			
-			<button type="submit" class="btn btn-info col-2">Save</button>
+			<button type="submit" >Save</button>
 						
 		</form>
 	

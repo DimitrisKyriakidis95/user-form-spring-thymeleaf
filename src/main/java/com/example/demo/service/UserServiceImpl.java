@@ -31,8 +31,6 @@ public class UserServiceImpl implements UserService {
 	public User findById(int theId) {
 		
 		
-		
-		
 		Optional<User> result = userRepository.findById(theId); 
 		
 		User theUser = null;
@@ -42,7 +40,7 @@ public class UserServiceImpl implements UserService {
 		}
 		else {
 			
-			throw new RuntimeException("Did not find employee id - " + theId);
+			throw new RuntimeException("Did not find user id - " + theId);
 		}
 		
 		return theUser;

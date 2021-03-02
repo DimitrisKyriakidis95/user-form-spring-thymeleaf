@@ -35,15 +35,16 @@
 				<!-- Add update button/link -->
 				<td>
 					<form th:action="@{/users/showFormForUpdate(userId=${tempUser.id})}">
-						<input type="hidden" name="userId" th:value="${tempUser.id}" />						
-						<button type="submit" class="btn btn-info btn-sm">Update</button>
+						  <input type="hidden" name="userId" th:value="${tempUser.id}" /> 						
+						<button type="submit" >Update</button>
 					</form>
 				</td>
+				
 				<td>
 					<!-- Delete button/link -->
 					<form th:action="@{/users/delete(userId=${tempUser.id})}">
 						<input type="hidden" name="userId" th:value="${tempUser.id}" />						
-						<button type="submit" class="btn btn-info btn-sm">Delete</button>
+						<button type="submit">Delete</button>
 					</form>
 				</td>
 			</tr>
